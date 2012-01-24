@@ -38,7 +38,7 @@ wget https://github.com/yuyalush/ip_address/zipball/master -O /root/ip_address.z
 unzip /root/ip_address.zip
 mv /root/yuyalush-ip_* /root/ip_address
 cd /root/ip_address
-#sudo rackup -D config.ru
+rackup -D config.ru
 echo "TITLE:ufw setting"
 ufw allow 9292
 
