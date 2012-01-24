@@ -21,54 +21,25 @@ make install
 echo "TITLE:Ruby finished."
 date
 
-#Rails
-echo "TITLE:Rails start"
+#Sinatra
+echo "TITLE:Sinatra start"
 date
 echo "gem: --no-ri --no-rdoc" > /root/.gemrc
 cd ..
 sudo gem update --system
 sudo gem update rake
-sudo gem install rails -v=3.0.9
-echo "TITLE:Rails finished"
+sudo gem install sinatra
+echo "TITLE:Sinatra finished"
 date
 
-# Sqlite3
-echo "TITLE:Sqlite3 start."
-date
-wget http://www.sqlite.org/sqlite-autoconf-3070701.tar.gz
-tar zxf sqlite-autoconf-3070701.tar.gz
-cd sqlite-autoconf-3070701/
-./configure
-make -j
-make install
-cd ..
-gem install sqlite3-ruby
-gem install sqlite3
-echo "TITLE:Sqlite3 finished."
-date
-
-# Check
-echo "TITLE:ruby & rails check"
-ruby -v
-rails -v
-
-# Test Rails App
-sudo rails new testapp --skip-bundle
-cd testapp
-#echo "gem 'therubyracer'" >> Gemfile
-echo "gem 'unicorn'" >> Gemfile
-echo "gem 'nifty-generators'" >> Gemfile
-echo "gem 'mocha'" >> Gemfile
-sudo bundle install
-sudo rails g nifty:scaffold Book title:string price:integer
-sudo rails g nifty:layout -f
-sudo rake db:migrate
-sudo bundle exec unicorn_rails -D
+#Git
+git clone git@github.com:yuyalush/ip_address.git
+rackup -D config.ru
 
 echo "TITLE:ufw setting"
-ufw allow 8080
+ufw allow 9292
 
 echo "TITLE:Finish!!!!!"
 date
 
-# Please Access http:// global-ip :8080/books/
+# Please Access http:// global-ip :9292/
