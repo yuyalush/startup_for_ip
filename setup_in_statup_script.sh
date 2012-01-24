@@ -29,6 +29,7 @@ cd ..
 sudo gem update --system
 sudo gem update rake
 sudo gem install sinatra
+sudo gem install rack
 echo "TITLE:Sinatra finished"
 date
 
