@@ -18,6 +18,7 @@ cd ruby-1.9.2-p290
 ./configure
 make -j
 make install
+cd ..
 echo "TITLE:Ruby finished."
 date
 
@@ -25,7 +26,6 @@ date
 echo "TITLE:Sinatra start"
 date
 echo "gem: --no-ri --no-rdoc" > /root/.gemrc
-cd ..
 sudo gem update --system
 sudo gem update rake
 sudo gem install sinatra
@@ -34,12 +34,11 @@ echo "TITLE:Sinatra finished"
 date
 
 #Create Server
-wget https://github.com/yuyalush/ip_address/zipball/master -O ip_address.zip
-unzip ip_address.zip
-mv yuyalush-ip_* ip_address
-cd ip_address
-rackup -D config.ru
-
+wget https://github.com/yuyalush/ip_address/zipball/master -O /root/ip_address.zip
+unzip /root/ip_address.zip
+mv /root/yuyalush-ip_* /root/ip_address
+#cd /root/ip_address
+#sudo rackup -D config.ru
 echo "TITLE:ufw setting"
 ufw allow 9292
 
