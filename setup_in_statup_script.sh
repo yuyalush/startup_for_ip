@@ -5,7 +5,7 @@
 cd /root
 echo "START!!!!"
 date
-apt-get install -y build-essential libssl-dev openssl libreadline6 libreadline6-dev git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion git-core
+apt-get install -y build-essential libssl-dev openssl libreadline6 libreadline6-dev git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion git-core unzip wget
 echo "apt-get finished."
 date
 
@@ -32,8 +32,11 @@ sudo gem install sinatra
 echo "TITLE:Sinatra finished"
 date
 
-#Git
-git clone git@github.com:yuyalush/ip_address.git
+#Create Server
+wget https://github.com/yuyalush/ip_address/zipball/master -O ip_address.zip
+unzip ip_address.zip
+mv yuyalush-ip_* ip_address
+cd ip_address
 rackup -D config.ru
 
 echo "TITLE:ufw setting"
