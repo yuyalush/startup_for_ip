@@ -1,0 +1,34 @@
+技術勉強会　作業手順書
+
+1. ファイアーウォールのdefault(Linux)に
+　TCP 9292 IN CIDR 0.0.0.0/0  を追加する
+
+2. Ubuntu 10.04でsmallのサーバーを作成する
+　起動スクリプトには以下の内容をペースト
+　https://raw.github.com/yuyalush/startup_for_ip/master/startup.sh
+
+3. SSHで接続後, 再起動する
+
+4. 以下のコマンドを実行する
+     curl https://raw.github.com/yuyalush/startup_for_ip/master/setup_in_statup_script.sh | sh
+
+5. http:// グローバルIP :9292 へアクセスする
+
+6. ２〜５をもう一度繰り返し、サーバをもう一台作る
+
+7. ロードバランサを設定する
+
+8. それぞれのサーバにSSH接続
+　cd ip_address
+　vim ip.rb
+  カーソルを移動させ、i
+　　env['HTTP_HOST']　を "aaa" に修正
+	escを一度押して :wq
+　ps x
+     /usr/local/bin/ruby /usr/local/bin/rackup -D config.ru  を探し、先頭の番号をコピー
+　kill -s SIGINT 番号
+　rackup -D config.ru
+
+　これを2台やって下さい。（"aaa”の箇所を"bbb"にする）
+
+9. ブラウザでロードバランサのIPアドレスにアクセスし、F5を連打しまくる
